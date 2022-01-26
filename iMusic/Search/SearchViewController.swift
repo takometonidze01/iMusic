@@ -66,7 +66,10 @@ class SearchViewController: UIViewController, SearchDisplayLogic
       setup()
       setupSearchBar()
       setupTableView()
+      self.interactor?.doSomething(request: Search.Something.Request.RequestType.getTracks(searchText: "t"))
   }
+    
+
   
   // MARK: Do something
   
@@ -142,7 +145,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cellViewModel = searchViewModel.cells[indexPath.row]
         
         let window = UIApplication.shared.keyWindow
-        let trackDetailsView = Bundle.main.loadNibNamed("TrackDetailView", owner: self, options: nil)?.first as! TrackDetailView
+        let trackDetailsView: TrackDetailView = TrackDetailView.loadFromNib()
         trackDetailsView.setUpView(viewModel: cellViewModel)
         trackDetailsView.delegate = self
         window?.addSubview(trackDetailsView)
@@ -153,11 +156,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
+        var searchTxt = "t"
+        if searchText == "" {
+            searchTxt = "t"
+        } else {
+            searchTxt = searchText
+        }
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5,
                                      repeats: false,
                                      block: { (_) in
-            self.interactor?.doSomething(request: Search.Something.Request.RequestType.getTracks(searchText: searchText))
+            self.interactor?.doSomething(request: Search.Something.Request.RequestType.getTracks(searchText: searchTxt))
 
         })
     }

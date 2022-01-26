@@ -33,6 +33,7 @@ class TrackDetailView: UIView {
     }()
     
     weak var delegate: TrackMovingDelegate?
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
     // Mark: - awakeFromNib
 
     
@@ -112,7 +113,8 @@ class TrackDetailView: UIView {
     // Mark: - IBAction
 
     @IBAction func dropDownButtonTapped(_ sender: Any) {
-        self.removeFromSuperview()
+//        self.removeFromSuperview()
+        self.tabBarDelegate?.minimizeTrackDetailController()
     }
     
     @IBAction func handleVolumeSlider(_ sender: Any) {

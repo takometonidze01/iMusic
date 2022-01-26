@@ -32,6 +32,7 @@
 		04711649279F55D300D87201 /* TrackDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04711648279F55D300D87201 /* TrackDetailView.swift */; };
 		0471164C279F5DFD00D87201 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471164B279F5DFD00D87201 /* UIColor + Extension.swift */; };
 		0471164E27A1DC2800D87201 /* CMTime + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471164D27A1DC2800D87201 /* CMTime + Extension.swift */; };
+		0471165027A1EB3100D87201 /* Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471164F27A1EB3100D87201 /* Nib.swift */; };
 		624A6AAE8F1400ADA305A022 /* Pods_iMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A306EFBD782357D545DFAF /* Pods_iMusic.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		04711648279F55D300D87201 /* TrackDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailView.swift; sourceTree = "<group>"; };
 		0471164B279F5DFD00D87201 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		0471164D27A1DC2800D87201 /* CMTime + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + Extension.swift"; sourceTree = "<group>"; };
+		0471164F27A1EB3100D87201 /* Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nib.swift; sourceTree = "<group>"; };
 		05E9BBDDFEEC88655B6A3DAB /* Pods-iMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMusic.release.xcconfig"; path = "Target Support Files/Pods-iMusic/Pods-iMusic.release.xcconfig"; sourceTree = "<group>"; };
 		2287ACD9699930160B915BD4 /* Pods-iMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMusic.debug.xcconfig"; path = "Target Support Files/Pods-iMusic/Pods-iMusic.debug.xcconfig"; sourceTree = "<group>"; };
 		D9A306EFBD782357D545DFAF /* Pods_iMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +158,7 @@
 				0471164B279F5DFD00D87201 /* UIColor + Extension.swift */,
 				043D94AE2796D82F00C1EC1C /* UIViewController + Storyboard.swift */,
 				0471164D27A1DC2800D87201 /* CMTime + Extension.swift */,
+				0471164F27A1EB3100D87201 /* Nib.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				043D946D278F2D2F00C1EC1C /* SearchMusicViewController.swift in Sources */,
+				0471165027A1EB3100D87201 /* Nib.swift in Sources */,
 				043D94AF2796D83000C1EC1C /* UIViewController + Storyboard.swift in Sources */,
 				043D9472278F6D2500C1EC1C /* SearchResponse.swift in Sources */,
 				043D9457278F1E3400C1EC1C /* AppDelegate.swift in Sources */,
