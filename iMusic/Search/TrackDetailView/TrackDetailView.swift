@@ -17,6 +17,12 @@ protocol TrackMovingDelegate: class {
 }
 class TrackDetailView: UIView {
     
+    @IBOutlet weak var miniPlayPauseButton: UIButton!
+    @IBOutlet weak var miniTrackTitleLabel: UILabel!
+    @IBOutlet weak var miniTrackImageView: UIImageView!
+    @IBOutlet weak var maximizedStackView: UIStackView!
+    @IBOutlet weak var miniGoForwardButton: UIButton!
+    @IBOutlet weak var miniTrackView: UIView!
     @IBOutlet weak var trackImageView: UIImageView!
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -47,12 +53,17 @@ class TrackDetailView: UIView {
 
     func setUpView(viewModel: SearchViewModel.Cell) {
         trackNameLabel.text = viewModel.trackName
+        miniTrackTitleLabel.text = viewModel.trackName
         authorLabel.text = viewModel.artistName
         playTrack(previewUrl: viewModel.previewUrl)
+    
         monitorStartTime()
         observeOlayerCurrentTime()
+        playPouseButton.setImage(UIImage(named: "turnOn"), for: .normal)
+        miniPlayPauseButton.setImage(UIImage(named: "turnOn"), for: .normal)
         let string600 = viewModel.iconUrlString?.replacingOccurrences(of: "100x100", with: "600x600")
         guard let url = URL(string: string600 ?? "") else { return }
+        miniTrackImageView.sd_setImage(with: url, completed: nil)
         trackImageView.sd_setImage(with: url, completed: nil)
     }
     
@@ -151,10 +162,12 @@ class TrackDetailView: UIView {
         if player.timeControlStatus == .paused {
             player.play()
             playPouseButton.setImage(UIImage(named: "turnOn"), for: .normal)
+            miniPlayPauseButton.setImage(UIImage(named: "turnOn"), for: .normal)
             enlargeTrackImageView()
         } else {
             player.pause()
             playPouseButton.setImage(UIImage(named: "turnOff"), for: .normal)
+            miniPlayPauseButton.setImage(UIImage(named: "turnOff"), for: .normal)
             reduceTrackImageView()
         }
     }
