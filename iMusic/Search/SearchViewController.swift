@@ -23,6 +23,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic
     
   var interactor: SearchBusinessLogic?
   var router: (NSObjectProtocol & SearchRoutingLogic & SearchDataPassing)?
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
     let searchController = UISearchController(searchResultsController: nil)
     @IBOutlet weak var table: UITableView!
     
@@ -143,12 +144,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellViewModel = searchViewModel.cells[indexPath.row]
-        
-        let window = UIApplication.shared.keyWindow
-        let trackDetailsView: TrackDetailView = TrackDetailView.loadFromNib()
-        trackDetailsView.setUpView(viewModel: cellViewModel)
-        trackDetailsView.delegate = self
-        window?.addSubview(trackDetailsView)
+        self.tabBarDelegate?.maximizedTrackDetailController(viewModel: cellViewModel)
+//        let window = UIApplication.shared.keyWindow
+//        let trackDetailsView: TrackDetailView = TrackDetailView.loadFromNib()
+//        trackDetailsView.setUpView(viewModel: cellViewModel)
+//        trackDetailsView.delegate = self
+//        window?.addSubview(trackDetailsView)
     }
     
 }
