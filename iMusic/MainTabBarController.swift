@@ -9,7 +9,7 @@ import UIKit
 
 protocol MainTabBarControllerDelegate: class {
     func minimizeTrackDetailController()
-    func maximizedTrackDetailController(viewModel: SearchViewModel.Cell)
+    func maximizedTrackDetailController(viewModel: SearchViewModel.Cell?)
 }
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
@@ -101,7 +101,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 }
 
 extension MainTabBarController: MainTabBarControllerDelegate {
-    func maximizedTrackDetailController(viewModel: SearchViewModel.Cell) {
+
+    func maximizedTrackDetailController(viewModel: SearchViewModel.Cell?) {
         maximizedTopAnchorConstrains.isActive = true
         minimizedTopAnchorConstrains.isActive = false
         maximizedTopAnchorConstrains.constant = 0
@@ -118,7 +119,7 @@ extension MainTabBarController: MainTabBarControllerDelegate {
             self.trackDetailView.maximizedStackView.alpha = 1
                                     },
                        completion: nil)
-//        guard let viewModel = viewModel else { return }
+        guard let viewModel = viewModel else { return }
         self.trackDetailView.setUpView(viewModel: viewModel)
     }
     

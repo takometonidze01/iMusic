@@ -48,6 +48,7 @@ class TrackDetailView: UIView {
         
         let scale: CGFloat = 0.8
         trackImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        setupGesture()
     }
     // Mark: - Setup
 
@@ -67,12 +68,71 @@ class TrackDetailView: UIView {
         trackImageView.sd_setImage(with: url, completed: nil)
     }
     
+    private func setupGesture() {
+        miniTrackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximized)))
+        miniTrackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
+    }
+    
+
+    
     private func playTrack(previewUrl: String?) {
         print(previewUrl ?? "kk")
         guard let url = URL(string: previewUrl ?? "") else { return }
         let playerItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: playerItem)
         player.play()
+    }
+    
+    //Mark: - Maximizing and minimizing gestures
+    
+    @objc private func handlePan(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            print("began")
+        case .changed:
+            print("")
+            handlePanChanged(gesture: gesture)
+        case .ended:
+            hanlePanEndeded(gesture: gesture)
+            print("ended")
+        @unknown default:
+            print("")
+        }
+        
+    }
+    
+    private func handlePanChanged(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        
+        let newAlpha = 1 + translation.y / 200
+        self.miniTrackView.alpha = newAlpha < 0 ? 0 : newAlpha
+        self.maximizedStackView.alpha = -translation.y / 200
+    }
+    
+    private func hanlePanEndeded(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        let velocity = gesture.velocity(in: self.superview)
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 1,
+                       options: .curveEaseOut,
+                       animations: {
+            self.transform = .identity
+            if translation.y < -200 || velocity.y < -500 {
+                self.tabBarDelegate?.maximizedTrackDetailController(viewModel: nil)
+            } else {
+                self.miniTrackView.alpha = 1
+                self.maximizedStackView.alpha = 0
+            }
+        }, completion: nil)
+    }
+    
+    @objc private func handleTapMaximized() {
+        print("tapping")
+        self.tabBarDelegate?.maximizedTrackDetailController(viewModel: nil)
     }
     
     // Mark: - Time setup
