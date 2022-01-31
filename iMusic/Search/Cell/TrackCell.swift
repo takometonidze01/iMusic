@@ -37,8 +37,20 @@ class TrackCell: UITableViewCell {
         
         trackImageView.image = nil
     }
+    @IBAction func addTrack(_ sender: Any) {
+        let defaults = UserDefaults.standard
+//        defaults.set(25, forKey: "age")
+        
+        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: cell, requiringSecureCoding: false) {
+            print("succesfully")
+            defaults.set(savedData, forKey: "tracks")
+        }
+    }
     
-    func setModel(viewModel: TrackCellViewModel) {
+    var cell: SearchViewModel.Cell?
+    
+    func setModel(viewModel: SearchViewModel.Cell) {
+        self.cell = viewModel
         trackNameLabel.text = viewModel.trackName
         artistNameLabel.text = viewModel.artistName
         collectionNameLabel.text = viewModel.collectionName
