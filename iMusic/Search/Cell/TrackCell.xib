@@ -76,6 +76,7 @@
             <connections>
                 <outlet property="artistNameLabel" destination="yeN-ln-Xiv" id="CwA-1p-rOG"/>
                 <outlet property="collectionNameLabel" destination="1AU-5C-4c1" id="Rji-Nt-7XG"/>
+                <outlet property="favTrack" destination="uGm-lC-3Jt" id="l1j-yU-4Lq"/>
                 <outlet property="trackImageView" destination="D3J-oY-rOJ" id="Sx6-lv-bgG"/>
                 <outlet property="trackNameLabel" destination="3XN-bO-Cw7" id="ICB-YU-rvU"/>
             </connections>

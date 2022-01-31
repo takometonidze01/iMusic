@@ -34,6 +34,9 @@
 		0471164E27A1DC2800D87201 /* CMTime + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471164D27A1DC2800D87201 /* CMTime + Extension.swift */; };
 		0471165027A1EB3100D87201 /* Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471164F27A1EB3100D87201 /* Nib.swift */; };
 		049D44D027A720D30079F07F /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D44CF27A720D20079F07F /* Library.swift */; };
+		049D44D327A85A340079F07F /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D44D227A85A340079F07F /* UserDefaults.swift */; };
+		049D44D927A86DD40079F07F /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 049D44D827A86DD40079F07F /* URLImage */; };
+		049D44DB27A86DD40079F07F /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 049D44DA27A86DD40079F07F /* URLImageStore */; };
 		624A6AAE8F1400ADA305A022 /* Pods_iMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A306EFBD782357D545DFAF /* Pods_iMusic.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +69,7 @@
 		0471164D27A1DC2800D87201 /* CMTime + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + Extension.swift"; sourceTree = "<group>"; };
 		0471164F27A1EB3100D87201 /* Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nib.swift; sourceTree = "<group>"; };
 		049D44CF27A720D20079F07F /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		049D44D227A85A340079F07F /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		05E9BBDDFEEC88655B6A3DAB /* Pods-iMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMusic.release.xcconfig"; path = "Target Support Files/Pods-iMusic/Pods-iMusic.release.xcconfig"; sourceTree = "<group>"; };
 		2287ACD9699930160B915BD4 /* Pods-iMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMusic.debug.xcconfig"; path = "Target Support Files/Pods-iMusic/Pods-iMusic.debug.xcconfig"; sourceTree = "<group>"; };
 		D9A306EFBD782357D545DFAF /* Pods_iMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049D44DB27A86DD40079F07F /* URLImageStore in Frameworks */,
 				043D9475278F6DF500C1EC1C /* SnapKit in Frameworks */,
+				049D44D927A86DD40079F07F /* URLImage in Frameworks */,
 				624A6AAE8F1400ADA305A022 /* Pods_iMusic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +124,7 @@
 				043D946C278F2D2F00C1EC1C /* SearchMusicViewController.swift */,
 				043D946E278F2E6100C1EC1C /* LibraryViewController.swift */,
 				049D44CF27A720D20079F07F /* Library.swift */,
+				049D44D227A85A340079F07F /* UserDefaults.swift */,
 			);
 			path = iMusic;
 			sourceTree = "<group>";
@@ -229,6 +236,8 @@
 			name = iMusic;
 			packageProductDependencies = (
 				043D9474278F6DF500C1EC1C /* SnapKit */,
+				049D44D827A86DD40079F07F /* URLImage */,
+				049D44DA27A86DD40079F07F /* URLImageStore */,
 			);
 			productName = iMusic;
 			productReference = 043D9453278F1E3400C1EC1C /* iMusic.app */;
@@ -260,6 +269,7 @@
 			mainGroup = 043D944A278F1E3300C1EC1C;
 			packageReferences = (
 				043D9473278F6DF500C1EC1C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				049D44D727A86DD40079F07F /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = 043D9454278F1E3400C1EC1C /* Products */;
 			projectDirPath = "";
@@ -346,6 +356,7 @@
 				043D946F278F2E6100C1EC1C /* LibraryViewController.swift in Sources */,
 				0471164C279F5DFD00D87201 /* UIColor + Extension.swift in Sources */,
 				043D94A62796D00600C1EC1C /* SearchWorker.swift in Sources */,
+				049D44D327A85A340079F07F /* UserDefaults.swift in Sources */,
 				043D94A92796D00600C1EC1C /* SearchViewController.swift in Sources */,
 				043D94A72796D00600C1EC1C /* SearchRouter.swift in Sources */,
 				043D94A82796D00600C1EC1C /* SearchModels.swift in Sources */,
@@ -572,6 +583,14 @@
 				kind = branch;
 			};
 		};
+		049D44D727A86DD40079F07F /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -579,6 +598,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 043D9473278F6DF500C1EC1C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		049D44D827A86DD40079F07F /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 049D44D727A86DD40079F07F /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		049D44DA27A86DD40079F07F /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 049D44D727A86DD40079F07F /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
