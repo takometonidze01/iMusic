@@ -70,6 +70,18 @@ class SearchViewController: UIViewController, SearchDisplayLogic
       self.interactor?.doSomething(request: Search.Something.Request.RequestType.getTracks(searchText: "t"))
   }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let keyWindow = UIApplication.shared.connectedScenes.filter({
+            $0.activationState == .foregroundActive
+        }).map({$0 as? UIWindowScene}).compactMap({
+            $0
+        }).first?.windows.filter({$0.isKeyWindow}).first
+        let tabBarVC = keyWindow?.rootViewController as? MainTabBarController
+        tabBarVC?.trackDetailView.delegate = self
+    }
+    
 
   
   // MARK: Do something

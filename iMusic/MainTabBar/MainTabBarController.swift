@@ -16,7 +16,6 @@ protocol MainTabBarControllerDelegate: class {
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     let searchVC: SearchViewController = SearchViewController.loadFromStoryboard()
-    let libraryVC = LibraryViewController()
     let trackDetailView: TrackDetailView = TrackDetailView.loadFromNib()
 
 
@@ -26,10 +25,11 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         view.backgroundColor = .brown
         view.backgroundColor = .systemBackground
            UITabBar.appearance().barTintColor = .systemBackground
-           tabBar.tintColor = .label
+           tabBar.tintColor = UIColor(hexString: "#FF2D55")
            setupVCs()
         searchVC.tabBarDelegate = self
 
@@ -38,36 +38,20 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        viewControllers = [
-//            generateViewController(rootViewController: searchVC, image: UIImage(named: "search")!, title: "Search"),
-//            generateViewController(rootViewController: libraryVC, image: UIImage(named: "library")!, title: "Library")
-//        ]
-//        tabBar.tintColor = UIColor(hexString: "#FF2D55")
-//        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0)
         setupTrackDetailView()
         
     }
     
-//    private func generateViewController(rootViewController: UIViewController, image: UIImage, title: String) -> UIViewController {
-//        let navigationVC = UINavigationController(rootViewController: rootViewController)
-//        navigationVC.tabBarItem.image = image
-//        navigationVC.tabBarItem.title = title
-//        rootViewController.navigationItem.title = title
-//        navigationVC.navigationBar.prefersLargeTitles = true
-//        return navigationVC
-//    }
-    
     
     func setupVCs() {
-        let library = Library()
+        var library = Library()
+        library.tabBarDelegate = self
         let hostVC = UIHostingController(rootView: library)
         hostVC.tabBarItem.image = UIImage(named: "library")
         hostVC.tabBarItem.title = "Library"
           viewControllers = [
-            hostVC,
               createNavController(for: searchVC, title: NSLocalizedString("Search", comment: ""), image: UIImage(named: "search")!),
-//              createNavController(for: hostVC, title: NSLocalizedString("Library", comment: ""), image: UIImage(named: "library")!),
-
+              hostVC
           ]
       }
     

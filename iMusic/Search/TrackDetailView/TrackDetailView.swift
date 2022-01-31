@@ -10,7 +10,7 @@ import SDWebImage
 import AVKit
 
 
-protocol TrackMovingDelegate: class {
+protocol TrackMovingDelegate {
     func moveBackForPreviousTrack() -> SearchViewModel.Cell?
     func moveForwardForPreviousTrack() -> SearchViewModel.Cell?
 
@@ -38,7 +38,7 @@ class TrackDetailView: UIView {
         return avPlayer
     }()
     
-    weak var delegate: TrackMovingDelegate?
+    var delegate: TrackMovingDelegate?
     weak var tabBarDelegate: MainTabBarControllerDelegate?
     // Mark: - awakeFromNib
 
@@ -60,7 +60,7 @@ class TrackDetailView: UIView {
     
         monitorStartTime()
         observeOlayerCurrentTime()
-        playPouseButton.setImage(UIImage(named: "turnOn"), for: .normal)
+        playPouseButton.setImage(UIImage(named: "pause"), for: .normal)
         miniPlayPauseButton.setImage(UIImage(named: "turnOn"), for: .normal)
         let string600 = viewModel.iconUrlString?.replacingOccurrences(of: "100x100", with: "600x600")
         guard let url = URL(string: string600 ?? "") else { return }
@@ -247,12 +247,12 @@ class TrackDetailView: UIView {
     @IBAction func playPauseAction(_ sender: Any) {
         if player.timeControlStatus == .paused {
             player.play()
-            playPouseButton.setImage(UIImage(named: "turnOn"), for: .normal)
+            playPouseButton.setImage(UIImage(named: "pause"), for: .normal)
             miniPlayPauseButton.setImage(UIImage(named: "turnOn"), for: .normal)
             enlargeTrackImageView()
         } else {
             player.pause()
-            playPouseButton.setImage(UIImage(named: "turnOff"), for: .normal)
+            playPouseButton.setImage(UIImage(named: "play"), for: .normal)
             miniPlayPauseButton.setImage(UIImage(named: "turnOff"), for: .normal)
             reduceTrackImageView()
         }
